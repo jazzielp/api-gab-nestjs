@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { UsuarioModule } from './usuario/usuario.module';
+import { UserModule } from './usuario/user.module';
 import { AuthModule } from './auth/auth.module';
 import { GeneralmoduleModule } from './generalmodule/generalmodule.module';
 import * as Joi from 'joi';
@@ -14,7 +14,7 @@ import * as Joi from 'joi';
         PORT: Joi.number().required(),
       }),
     }),
-    UsuarioModule,
+    UserModule,
     AuthModule,
     GeneralmoduleModule,
   ],

@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { GeneralmoduleService } from './generalmodule.service';
-import { CreateGeneralmoduleDto } from './dto/create-generalmodule.dto';
-import { UpdateGeneralmoduleDto } from './dto/update-generalmodule.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { GeneralmoduleService } from '../services/generalmodule.service';
+import { CreateGeneralmoduleDto } from '../dto/create-generalmodule.dto';
+import { UpdateGeneralmoduleDto } from '../dto/update-generalmodule.dto';
 
 @Controller('generalmodule')
 export class GeneralmoduleController {
@@ -23,7 +31,10 @@ export class GeneralmoduleController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGeneralmoduleDto: UpdateGeneralmoduleDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateGeneralmoduleDto: UpdateGeneralmoduleDto,
+  ) {
     return this.generalmoduleService.update(+id, updateGeneralmoduleDto);
   }
 
