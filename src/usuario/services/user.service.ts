@@ -11,8 +11,11 @@ import { ErrorManager } from '../../utils/error.manager';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(User) private readonly userRepository: Repository<User>, //Injection to use the repository of the entity
   ) {}
+
+  //Crate
+  // ...........................................................................
   async create(createUserDto: CreateUserDto) {
     try {
       const newUser = this.userRepository.create(createUserDto);
@@ -24,6 +27,8 @@ export class UserService {
     }
   }
 
+  //findAll
+  // ...........................................................................
   async findAll(): Promise<User[]> {
     try {
       const users: User[] = await this.userRepository.find();
@@ -39,6 +44,8 @@ export class UserService {
     }
   }
 
+  //findOne
+  // ...........................................................................
   async findOne(id: number): Promise<User> {
     try {
       const user: User = await this.userRepository.findOneBy({ id });
@@ -54,6 +61,8 @@ export class UserService {
     }
   }
 
+  //update
+  // ...........................................................................
   async update(
     id: number,
     updateUserDto: UpdateUserDto,
@@ -75,6 +84,8 @@ export class UserService {
     }
   }
 
+  //remove
+  // ...........................................................................
   async remove(id: number): Promise<DeleteResult> {
     try {
       const user: DeleteResult = await this.userRepository.delete(id);
