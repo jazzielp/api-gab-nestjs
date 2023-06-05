@@ -1,7 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import * as morgan from 'morgan';
+import { Reflector } from '@nestjs/core';
 
 import { AppModule } from './app.module';
 
@@ -17,6 +18,9 @@ async function bootstrap() {
       },
     }),
   );
+
+  const reflector = app.get(Reflector);
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 
   const configService = app.get(ConfigService);
 
