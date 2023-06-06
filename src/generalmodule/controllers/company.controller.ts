@@ -6,6 +6,7 @@ import {
   Patch,
   Body,
   Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { CompanyService } from '../services/company.service';
@@ -26,17 +27,20 @@ export class CompanyController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
     return this.companyService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
+  update(
+    @Param('id', ParseIntPipe) id: string,
+    @Body() updateCompanyDto: UpdateCompanyDto,
+  ) {
     return this.companyService.update(+id, updateCompanyDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: string) {
     return this.companyService.remove(+id);
   }
 }
