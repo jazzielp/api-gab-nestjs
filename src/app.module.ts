@@ -19,6 +19,7 @@ import { DataSourceConfig } from './config/data.source';
         DB_USER: Joi.string().required(),
         DB_PASSWORD: Joi.string().required(),
         DB_NAME: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot(DataSourceConfig),

@@ -61,6 +61,27 @@ export class UserService {
     }
   }
 
+  //findBy
+  // ...........................................................................
+  async findBy({
+    field,
+    value,
+  }: {
+    field: keyof User;
+    value: string;
+  }): Promise<User> {
+    try {
+      const user: User = await this.userRepository
+        .createQueryBuilder('user')
+        .addSelect('user.password')
+        .where({ [field]: value })
+        .getOne();
+      return user;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
   //update
   // ...........................................................................
   async update(
