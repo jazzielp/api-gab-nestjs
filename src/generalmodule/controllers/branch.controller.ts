@@ -13,44 +13,44 @@ import {
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { CompanyService } from '../services/company.service';
-import { CreateCompanyDto, UpdateCompanyDto } from '../dto/company.dto';
+import { BranchService } from '../services/branch.service';
+import { CreateBranchDto, UpdateBranchDto } from '../dto/branch.dto';
 
 @UseGuards(AuthGuard, RolesGuard)
-@Controller('company')
-export class CompanyController {
-  constructor(private readonly companyService: CompanyService) {}
+@Controller('branch')
+export class BranchController {
+  constructor(private readonly branchService: BranchService) {}
 
   @Roles('ADMIN')
   @Post()
-  create(@Body() createCompanyDto: CreateCompanyDto) {
-    return this.companyService.create(createCompanyDto);
+  create(@Body() createBranchDto: CreateBranchDto) {
+    return this.branchService.create(createBranchDto);
   }
 
   @Roles('ADMIN')
   @Get()
   findAll() {
-    return this.companyService.findAll();
+    return this.branchService.findAll();
   }
 
   @Roles('ADMIN')
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: string) {
-    return this.companyService.findOne(+id);
+    return this.branchService.findOne(+id);
   }
 
   @Roles('ADMIN')
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: string,
-    @Body() updateCompanyDto: UpdateCompanyDto,
+    @Body() updateBranchDto: UpdateBranchDto,
   ) {
-    return this.companyService.update(+id, updateCompanyDto);
+    return this.branchService.update(+id, updateBranchDto);
   }
 
   @Roles('ADMIN')
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: string) {
-    return this.companyService.remove(+id);
+    return this.branchService.remove(+id);
   }
 }
