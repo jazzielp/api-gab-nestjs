@@ -27,13 +27,13 @@ export class BranchController {
     return this.branchService.create(createBranchDto);
   }
 
-  @Roles('ADMIN')
+  @Roles('ADMIN', 'BASIC')
   @Get()
   findAll() {
     return this.branchService.findAll();
   }
 
-  @Roles('ADMIN')
+  @Roles('ADMIN', 'BASIC')
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: string) {
     return this.branchService.findOne(+id);
