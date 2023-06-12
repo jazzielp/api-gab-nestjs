@@ -9,10 +9,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ParseIntPipe } from '@nestjs/common';
+
 import { AuthGuard } from '../../auth/guards/auth.guard';
+// import { Public } from '../../auth/decorators/public.decorator';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
-
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -23,6 +24,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Roles('ADMIN')
+  // @Public()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
