@@ -2,22 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeleteResult, UpdateResult } from 'typeorm';
 
-import { CreateCropDto, UpdateCropDto } from '../dto/crop.dto';
-import { Crop } from '../entities/crop.entity';
+import { CreateLotDto, UpdateLotDto } from '../dto/lot.dto';
+import { Lot } from '../entities/lot.entity';
 import { ErrorManager } from '../../utils/error.manager';
 
 @Injectable()
-export class CropService {
+export class LotService {
   constructor(
-    @InjectRepository(Crop)
-    private readonly cropRepository: Repository<Crop>, //Injection to use the repository of the entity
+    @InjectRepository(Lot)
+    private readonly lotRepository: Repository<Lot>, //Injection to use the repository of the entity
   ) {}
 
   //Crate
   // ...........................................................................
-  async create(createCropDto: CreateCropDto) {
+  async create(createLotDto: CreateLotDto) {
     try {
-      return await this.cropRepository.save(createCropDto);
+      return await this.lotRepository.save(createLotDto);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -25,16 +25,16 @@ export class CropService {
 
   //findAll
   // ...........................................................................
-  async findAll(): Promise<Crop[]> {
+  async findAll(): Promise<Lot[]> {
     try {
-      const crops: Crop[] = await this.cropRepository.find();
-      if (!crops || crops.length === 0) {
+      const lots: Lot[] = await this.lotRepository.find();
+      if (!lots || lots.length === 0) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: 'Crops not found',
+          message: 'Lots not found',
         });
       }
-      return crops;
+      return lots;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -42,16 +42,16 @@ export class CropService {
 
   //findOne
   // ...........................................................................
-  async findOne(id: number): Promise<Crop> {
+  async findOne(id: number): Promise<Lot> {
     try {
-      const crop: Crop = await this.cropRepository.findOneBy({ id });
-      if (!crop) {
+      const lot: Lot = await this.lotRepository.findOneBy({ id });
+      if (!lot) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: 'Crop not found',
+          message: 'Lot not found',
         });
       }
-      return crop;
+      return lot;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -59,22 +59,19 @@ export class CropService {
 
   //update
   // ...........................................................................
-  async update(
-    id: number,
-    updateCropDto: UpdateCropDto,
-  ): Promise<UpdateResult> {
+  async update(id: number, updateLotDto: UpdateLotDto): Promise<UpdateResult> {
     try {
-      const crop: UpdateResult = await this.cropRepository.update(
+      const lot: UpdateResult = await this.lotRepository.update(
         id,
-        updateCropDto,
+        updateLotDto,
       );
-      if (crop.affected === 0) {
+      if (lot.affected === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'Failed to update record',
         });
       }
-      return crop;
+      return lot;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -84,14 +81,14 @@ export class CropService {
   // ...........................................................................
   async remove(id: number): Promise<DeleteResult> {
     try {
-      const crop: DeleteResult = await this.cropRepository.delete(id);
-      if (crop.affected === 0) {
+      const lot: DeleteResult = await this.lotRepository.delete(id);
+      if (lot.affected === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'Failed to delete record',
         });
       }
-      return crop;
+      return lot;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
