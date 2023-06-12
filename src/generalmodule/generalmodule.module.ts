@@ -17,10 +17,13 @@ import { Crop } from './entities/crop.entity';
 import { LotService } from './services/lot.service';
 import { LotController } from './controllers/lot.controller';
 import { Lot } from './entities/lot.entity';
+import { CycleService } from './services/cycle.service';
+import { CycleController } from './controllers/cycle.controller';
+import { Cycle } from './entities/cycle.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Company, Branch, Warehouse, Crop, Lot]),
+    TypeOrmModule.forFeature([Company, Branch, Warehouse, Crop, Lot, Cycle]),
     UserModule,
   ],
   controllers: [
@@ -29,6 +32,7 @@ import { Lot } from './entities/lot.entity';
     WarehouseController,
     CropController,
     LotController,
+    CycleController,
   ],
   providers: [
     CompanyService,
@@ -36,6 +40,7 @@ import { Lot } from './entities/lot.entity';
     WarehouseService,
     CropService,
     LotService,
+    CycleService,
   ],
 })
 export class GeneralmoduleModule {}
