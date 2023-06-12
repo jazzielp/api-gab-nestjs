@@ -17,7 +17,19 @@ export class CycleService {
   // ...........................................................................
   async create(createCycleDto: CreateCycleDto) {
     try {
-      return await this.cycleRepository.save(createCycleDto);
+      //Getting the year to create the cycle field
+      //.........................................................................
+      const { startDate, endDate } = createCycleDto;
+      const startYear = new Date(startDate).getFullYear();
+      const endYear = new Date(endDate).getFullYear();
+      const strinCycle = `${startYear}-${endYear}`;
+      const cycle = {
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        cycle: strinCycle,
+      };
+
+      return await this.cycleRepository.save(cycle);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

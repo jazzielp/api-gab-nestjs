@@ -14,7 +14,7 @@ export class CreateCropDto {
 
   @ApiProperty()
   @IsOptional()
-  @IsString()
+  @IsBoolean()
   isCrop: boolean;
 }
 
