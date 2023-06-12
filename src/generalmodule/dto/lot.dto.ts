@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import { TYPE_LOT } from '../../constants/type-lot';
 
@@ -11,7 +11,7 @@ export class CreateLotDto {
 
   @ApiProperty()
   @IsOptional()
-  @IsString()
+  @IsBoolean()
   status: boolean;
 
   @ApiProperty()

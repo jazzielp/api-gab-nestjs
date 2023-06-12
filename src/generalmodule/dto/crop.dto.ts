@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateCropDto {
   @ApiProperty()
@@ -9,7 +9,7 @@ export class CreateCropDto {
 
   @ApiProperty()
   @IsOptional()
-  @IsString()
+  @IsBoolean()
   status: boolean;
 
   @ApiProperty()
