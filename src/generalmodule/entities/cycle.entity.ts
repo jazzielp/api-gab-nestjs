@@ -1,5 +1,6 @@
 import { BaseEntity } from '../../config/base.entity';
-import { Entity, Column, Unique } from 'typeorm';
+import { Entity, Column, Unique, OneToMany } from 'typeorm';
+import { LotCycle } from './lot-cycle.entity';
 
 @Entity('cycles')
 @Unique(['cycle'])
@@ -15,4 +16,7 @@ export class Cycle extends BaseEntity {
 
   @Column({ type: 'boolean', default: true })
   status: boolean;
+
+  @OneToMany(() => LotCycle, (lotCycle) => lotCycle.cycle)
+  lotCycles: LotCycle[];
 }
