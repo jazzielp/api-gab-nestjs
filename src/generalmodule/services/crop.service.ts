@@ -44,7 +44,10 @@ export class CropService {
   // ...........................................................................
   async findOne(id: number): Promise<Crop> {
     try {
-      const crop: Crop = await this.cropRepository.findOneBy({ id });
+      const crop: Crop = await this.cropRepository.findOne({
+        relations: ['lotCycles'],
+        where: { id },
+      });
       if (!crop) {
         throw new ErrorManager({
           type: 'NOT_FOUND',

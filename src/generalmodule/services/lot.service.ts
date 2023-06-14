@@ -44,7 +44,10 @@ export class LotService {
   // ...........................................................................
   async findOne(id: number): Promise<Lot> {
     try {
-      const lot: Lot = await this.lotRepository.findOneBy({ id });
+      const lot: Lot = await this.lotRepository.findOne({
+        relations: ['lotCycles'],
+        where: { id },
+      });
       if (!lot) {
         throw new ErrorManager({
           type: 'NOT_FOUND',

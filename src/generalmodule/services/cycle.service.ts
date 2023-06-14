@@ -56,7 +56,10 @@ export class CycleService {
   // ...........................................................................
   async findOne(id: number): Promise<Cycle> {
     try {
-      const cycle: Cycle = await this.cycleRepository.findOneBy({ id });
+      const cycle: Cycle = await this.cycleRepository.findOne({
+        relations: ['lotCycles', 'lotCycles.lot', 'lotCycles.crop'],
+        where: { id },
+      });
       if (!cycle) {
         throw new ErrorManager({
           type: 'NOT_FOUND',

@@ -27,9 +27,26 @@ export class LotCycleService {
   // ...........................................................................
   async findAll(): Promise<LotCycle[]> {
     try {
-      const LotCycles: LotCycle[] = await this.lotCycleRepository.find({
-        relations: ['crop', 'lot', 'cycle'],
-      });
+      // const LotCycles: LotCycle[] = await this.lotCycleRepository.find({
+      //   relations: ['crop', 'lot', 'cycle'],
+      // });
+      const LotCycles: LotCycle[] = await this.lotCycleRepository
+        .createQueryBuilder('lotCycle')
+        .leftJoinAndSelect('lotCycle.crop', 'crop')
+        .leftJoinAndSelect('lotCycle.lot', 'lot')
+        .leftJoinAndSelect('lotCycle.cycle', 'cycle')
+        .select([
+          'lotCycle.id',
+          'lotCycle.haston',
+          'lotCycle.status',
+          'crop.id',
+          'crop.name',
+          'lot.id',
+          'lot.name',
+          'cycle.id',
+          'cycle.cycle',
+        ])
+        .getMany();
       if (!LotCycles || LotCycles.length === 0) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
