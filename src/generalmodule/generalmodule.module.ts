@@ -23,6 +23,9 @@ import { Cycle } from './entities/cycle.entity';
 import { LotCycleService } from './services/lot-cycle.service';
 import { LotCycleController } from './controllers/lot-cycle.controller';
 import { LotCycle } from './entities/lot-cycle.entity';
+import { CompanyByUserService } from './services/company-by-user.service';
+import { CompanyByUserController } from './controllers/company-by-user.controller';
+import { CompanyByUser } from './entities/company-by-user.entity';
 
 @Module({
   imports: [
@@ -34,6 +37,7 @@ import { LotCycle } from './entities/lot-cycle.entity';
       Lot,
       Cycle,
       LotCycle,
+      CompanyByUser,
     ]),
     UserModule,
   ],
@@ -45,6 +49,7 @@ import { LotCycle } from './entities/lot-cycle.entity';
     LotController,
     CycleController,
     LotCycleController,
+    CompanyByUserController,
   ],
   providers: [
     CompanyService,
@@ -54,6 +59,7 @@ import { LotCycle } from './entities/lot-cycle.entity';
     LotService,
     CycleService,
     LotCycleService,
+    CompanyByUserService,
   ],
 })
 export class GeneralmoduleModule {}

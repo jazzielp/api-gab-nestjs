@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/swagger';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsNotEmpty,
@@ -6,7 +6,6 @@ import {
   IsOptional,
   IsPositive,
 } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateLotCycleDto {
   @ApiProperty()

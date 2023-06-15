@@ -27,9 +27,6 @@ export class LotCycleService {
   // ...........................................................................
   async findAll(): Promise<LotCycle[]> {
     try {
-      // const LotCycles: LotCycle[] = await this.lotCycleRepository.find({
-      //   relations: ['crop', 'lot', 'cycle'],
-      // });
       const LotCycles: LotCycle[] = await this.lotCycleRepository
         .createQueryBuilder('lotCycle')
         .leftJoinAndSelect('lotCycle.crop', 'crop')

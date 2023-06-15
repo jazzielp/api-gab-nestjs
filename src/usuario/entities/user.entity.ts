@@ -1,8 +1,9 @@
-import { Column, Entity, Unique } from 'typeorm';
+import { Column, Entity, OneToMany, Unique } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
 import { ROLES } from '../../constants/roles';
 import { BaseEntity } from '../../config/base.entity';
+import { CompanyByUser } from '../../generalmodule/entities/company-by-user.entity';
 
 @Entity('users')
 @Unique(['username', 'email'])
@@ -28,4 +29,7 @@ export class User extends BaseEntity {
 
   @Column({ default: true })
   status: boolean;
+
+  @OneToMany(() => CompanyByUser, (companyByUser) => companyByUser.user)
+  companyByUser: CompanyByUser[];
 }
