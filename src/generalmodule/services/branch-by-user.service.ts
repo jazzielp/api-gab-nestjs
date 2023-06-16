@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
-import { CompanyByUser } from '../entities/company-by-user.entity';
 import { ErrorManager } from '../../utils/error.manager';
 import {
   CreateBranchByUserDto,
