@@ -26,6 +26,9 @@ import { LotCycle } from './entities/lot-cycle.entity';
 import { CompanyByUserService } from './services/company-by-user.service';
 import { CompanyByUserController } from './controllers/company-by-user.controller';
 import { CompanyByUser } from './entities/company-by-user.entity';
+import { BranchByUserService } from './services/branch-by-user.service';
+import { BranchByUserController } from './controllers/branch-by-user.controller';
+import { BranchByUser } from './entities/branch-by-user.entity';
 
 @Module({
   imports: [
@@ -38,6 +41,7 @@ import { CompanyByUser } from './entities/company-by-user.entity';
       Cycle,
       LotCycle,
       CompanyByUser,
+      BranchByUser,
     ]),
     UserModule,
   ],
@@ -50,6 +54,7 @@ import { CompanyByUser } from './entities/company-by-user.entity';
     CycleController,
     LotCycleController,
     CompanyByUserController,
+    BranchByUserController,
   ],
   providers: [
     CompanyService,
@@ -60,6 +65,7 @@ import { CompanyByUser } from './entities/company-by-user.entity';
     CycleService,
     LotCycleService,
     CompanyByUserService,
+    BranchByUserService,
   ],
 })
 export class GeneralmoduleModule {}
